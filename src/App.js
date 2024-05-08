@@ -20,27 +20,23 @@ function App() {
     const currentWeatherFetch =  fetch(`{}  )
     const forecastFetch = fetch()
 
-    promise.all([currentWeatherFetch, forecastFetch])
+    Promise.all([currentWeatherFetch, forecastFetch])
       .then(async(repsonse)) =>{
           const weatherResponse = await response[0] .json();
           const foreacastResponse = await response[1] .json();
 
         }
-          setCurrentWeather(weatherResponse);
-          setForecast(forecast);
+          setCurrentWeather({city: searchData.label, ...weatherResponse);
+          setForecast({city: searchData.label, ...forecastResponse});
     //api
    }
     return (
       <div className = "container">
-        <search onSearchChange ={handleOnSearch} />
-        < CurrentWeather />
-
+        <Search onSearchChange ={handleOnSearch} />
+        {currentWeather && <currentWeather data={currentWeather}/>}
+        {forecast &&<Forecast data={}/>}
         
-        
-        
-        
-        
-        </div>
+      </div>
   
         
         
